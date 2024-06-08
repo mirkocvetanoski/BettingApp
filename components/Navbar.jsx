@@ -1,10 +1,15 @@
+"use client";
+
 import NavbarLink from "./NavbarLink";
 import { FiSearch } from "react-icons/fi";
 import { FaRegNewspaper } from "react-icons/fa";
 import { MdScoreboard } from "react-icons/md";
-import { IoIosLogIn } from "react-icons/io";
+import { IoIosLogIn, IoIosLogOut } from "react-icons/io";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [isLogged, setIsLogged] = useState(true);
+
   return (
     <nav className="rounded-lg border border-solid border-neutral-800 px-5 py-4">
       <ul className="text-md flex items-center gap-4 font-medium text-neutral-300">
@@ -18,10 +23,17 @@ const Navbar = () => {
         <NavbarLink link="/search">
           <FiSearch /> Search
         </NavbarLink>
-        <NavbarLink link="/login">
-          <IoIosLogIn />
-          Login
-        </NavbarLink>
+        {isLogged ? (
+          <NavbarLink link="/user/logout">
+            <IoIosLogOut />
+            LogOut
+          </NavbarLink>
+        ) : (
+          <NavbarLink link="/user/login">
+            <IoIosLogIn />
+            Login
+          </NavbarLink>
+        )}
       </ul>
     </nav>
   );
