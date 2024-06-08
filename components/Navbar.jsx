@@ -8,7 +8,7 @@ import { IoIosLogIn, IoIosLogOut } from "react-icons/io";
 import { useState } from "react";
 
 const Navbar = () => {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
 
   return (
     <nav className="rounded-lg border border-solid border-neutral-800 px-5 py-4">
