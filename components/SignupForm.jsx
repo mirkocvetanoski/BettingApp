@@ -46,7 +46,7 @@ const LoginhtmlForm = () => {
             />
           </div>
           <button
-            className="hover:shadow-button mb-6 w-full rounded border-neutral-300 bg-red-500 px-4 py-2 font-bold text-neutral-300 transition-all duration-300 hover:bg-red-700 hover:shadow-red-700"
+            className="mb-6 w-full rounded border-neutral-300 bg-red-500 px-4 py-2 font-bold text-neutral-300 transition-all duration-300 hover:bg-red-700 hover:shadow-button hover:shadow-red-700"
             type="submit"
           >
             Submit

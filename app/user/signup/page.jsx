@@ -2,8 +2,8 @@ import SignupForm from "@/components/SignupForm";
 
 const SignUp = () => {
   return (
-    <div>
-      <SignupForm />;
+    <div className="w-80">
+      <SignupForm />
     </div>
   );
 };
