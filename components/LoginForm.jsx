@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
-import { signIn, getProviders } from "next-auth/react";
+import { signIn, getProviders, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 const LoginForm = () => {
@@ -50,26 +50,26 @@ const LoginForm = () => {
           >
             Submit
           </button>
-
-          {providers &&
-            Object.values(providers).map((provider, index) => (
-              <button
-                key={index}
-                onClick={() =>
-                  signIn(provider.id, {
-                    callbackUrl: "/",
-                  })
-                }
-                className="mb-6 flex w-full justify-center rounded border-neutral-300 bg-slate-500 px-4 py-2 font-bold transition-all duration-300 hover:bg-slate-700 hover:shadow-button hover:shadow-slate-700"
-                type="submit"
-              >
-                <span className="flex items-center gap-3">
-                  <FaGoogle />
-                  Login with Google
-                </span>
-              </button>
-            ))}
         </form>
+
+        {providers &&
+          Object.values(providers).map((provider, index) => (
+            <button
+              key={index}
+              onClick={() =>
+                signIn(provider.id, {
+                  callbackUrl: "/",
+                })
+              }
+              className="mb-6 flex w-full justify-center rounded border-neutral-300 bg-slate-500 px-4 py-2 font-bold transition-all duration-300 hover:bg-slate-700 hover:shadow-button hover:shadow-slate-700"
+              type="submit"
+            >
+              <span className="flex items-center gap-3">
+                <FaGoogle />
+                Login with Google
+              </span>
+            </button>
+          ))}
 
         <div>
           <div className="flex justify-between gap-4">
