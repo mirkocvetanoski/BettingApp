@@ -1,11 +1,10 @@
 "use client";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { toast } from "react-toastify";
 
-const LoginhtmlForm = () => {
-  const [error, setError] = useState("");
+const SignupForm = () => {
   const router = useRouter();
 
   const isValidEmail = (email) => {
@@ -141,4 +140,4 @@ const LoginhtmlForm = () => {
   );
 };
 
-export default LoginhtmlForm;
+export default SignupForm;

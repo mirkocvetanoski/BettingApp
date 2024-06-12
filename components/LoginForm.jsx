@@ -1,7 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
+import { signIn, getProviders } from "next-auth/react";
+import { useEffect, useState } from "react";
 
-const LoginhtmlForm = () => {
+const LoginForm = () => {
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    const setAuthProviders = async () => {
+      const res = await getProviders();
+      setProviders(res);
+    };
+
+    setAuthProviders();
+  }, []);
+
   return (
     <div className="flex h-fit flex-col items-center gap-3 tracking-wide text-neutral-300">
       <h1 className="text-xl font-bold underline underline-offset-8">Login</h1>
@@ -35,15 +50,25 @@ const LoginhtmlForm = () => {
           >
             Submit
           </button>
-          <button
-            className="mb-6 flex w-full justify-center rounded border-neutral-300 bg-slate-500 px-4 py-2 font-bold transition-all duration-300 hover:bg-slate-700 hover:shadow-button hover:shadow-slate-700"
-            type="submit"
-          >
-            <span className="flex items-center gap-3">
-              <FaGoogle />
-              Login with Google
-            </span>
-          </button>
+
+          {providers &&
+            Object.values(providers).map((provider, index) => (
+              <button
+                key={index}
+                onClick={() =>
+                  signIn(provider.id, {
+                    callbackUrl: "/",
+                  })
+                }
+                className="mb-6 flex w-full justify-center rounded border-neutral-300 bg-slate-500 px-4 py-2 font-bold transition-all duration-300 hover:bg-slate-700 hover:shadow-button hover:shadow-slate-700"
+                type="submit"
+              >
+                <span className="flex items-center gap-3">
+                  <FaGoogle />
+                  Login with Google
+                </span>
+              </button>
+            ))}
         </form>
 
         <div>
@@ -64,4 +89,4 @@ const LoginhtmlForm = () => {
   );
 };
 
-export default LoginhtmlForm;
+export default LoginForm;

@@ -5,10 +5,10 @@ import { FiSearch } from "react-icons/fi";
 import { FaRegNewspaper } from "react-icons/fa";
 import { MdScoreboard } from "react-icons/md";
 import { IoIosLogIn, IoIosLogOut } from "react-icons/io";
-import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <nav className="rounded-lg border border-solid border-neutral-800 px-5 py-4">
@@ -23,7 +23,7 @@ const Navbar = () => {
         <NavbarLink link="/search">
           <FiSearch /> Search
         </NavbarLink>
-        {isLogged ? (
+        {session ? (
           <NavbarLink link="/user/logout">
             <IoIosLogOut />
             LogOut
