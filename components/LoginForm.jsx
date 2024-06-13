@@ -6,6 +6,7 @@ import { signIn, getProviders, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import Spinner from "@/components/Spinner";
 
 const LoginForm = () => {
   const [providers, setProviders] = useState(null);
@@ -40,12 +41,12 @@ const LoginForm = () => {
     const password = e.target[1].value;
 
     if (!isValidEmail(email)) {
-      toast.error("Email is invalid");
+      toast.error("Email is not valid");
       return;
     }
 
     if (!password || password.length < 8) {
-      toast.error("Password is invalid");
+      toast.error("Password is not valid");
       return;
     }
 
@@ -62,7 +63,7 @@ const LoginForm = () => {
   };
 
   if (sessionStatus === "loading") {
-    return <h1>Loading...</h1>;
+    return <Spinner />;
   }
 
   return (
