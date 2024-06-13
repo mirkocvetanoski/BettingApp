@@ -20,6 +20,8 @@ export const authOptions = {
   callbacks: {
     // Invoked on successful signin
     async signIn({ profile }) {
+      // console.log(account.provider);
+
       // 1. Connect to database
       await connectDB();
       // 2. Check if user exists

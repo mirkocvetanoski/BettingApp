@@ -58,12 +58,11 @@ const SignupForm = () => {
       }
 
       if (res.status === 200) {
-        setError("");
         router.push("/user/login");
         toast.success("User successfully registered.");
       }
     } catch (error) {
-      setError("Something went wrong. Try again!");
+      toast.error("Something went wrong. Try again!");
       console.log(error);
     }
   };
