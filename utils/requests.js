@@ -8,7 +8,7 @@ async function fetchCompetitions() {
       return [];
     }
 
-    const res = await fetch(`${apiDomain}/competitions`, { cache: 'no-store' });
+    const res = await fetch(`${apiDomain}/competitions`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch data");
