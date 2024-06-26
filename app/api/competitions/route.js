@@ -1,3 +1,4 @@
+// GET /api/competitions
 export const GET = async (request) => {
   try {
     const res = await fetch("https://sportspredict.xyz/api/competitions");

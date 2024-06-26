@@ -1,6 +1,8 @@
 import { fetchCompetitions } from "@/utils/requests";
 import PopularSportsLink from "./PopularSportsLink";
 
+export const dynamic = "force-dynamic";
+
 const PopularSports = async () => {
   const { competitions } = await fetchCompetitions();
 
