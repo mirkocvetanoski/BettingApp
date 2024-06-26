@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 // GET /api/competitions
 export const GET = async (request) => {
   try {
