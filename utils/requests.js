@@ -1,5 +1,7 @@
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 
+export const dynamic = "force-dynamic";
+
 // Fetch all properties
 async function fetchCompetitions() {
   try {
@@ -11,7 +13,6 @@ async function fetchCompetitions() {
     const res = await fetch(
       `${apiDomain}/competitions`,
       // { cache: "no-store" }
-      { next: { revalidate: 0 } },
     );
 
     if (!res.ok) {
