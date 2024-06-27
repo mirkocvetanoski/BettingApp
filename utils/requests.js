@@ -1,7 +1,5 @@
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 
-export const dynamic = "force-dynamic";
-
 // Fetch all properties
 async function fetchCompetitions() {
   try {
@@ -10,10 +8,7 @@ async function fetchCompetitions() {
       return [];
     }
 
-    const res = await fetch(
-      `${apiDomain}/competitions`,
-      // { cache: "no-store" }
-    );
+    const res = await fetch(`${apiDomain}/competitions`);
 
     if (!res.ok) {
       throw new Error("Failed to fetch data");
