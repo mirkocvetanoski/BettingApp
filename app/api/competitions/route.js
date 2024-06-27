@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 // GET /api/competitions
 export const GET = async (request) => {
   try {
+    // Fetch competitions
     const res = await fetch("https://sportspredict.xyz/api/competitions");
 
     const data = await res.json();
