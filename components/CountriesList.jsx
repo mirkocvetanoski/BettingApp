@@ -23,9 +23,9 @@ const CountriesList = () => {
     fetchCountriesData(slug);
   }, [pathname]);
 
-  if (countriesByCompetition.length === 0) {
-    return <Spinner />;
-  }
+  // if (countriesByCompetition.length === 0) {
+  //   return <Spinner />;
+  // }
 
   return (
     <ul className="mt-8 flex h-[400px] w-48 flex-col gap-1 overflow-hidden overflow-y-scroll">
