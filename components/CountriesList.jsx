@@ -10,7 +10,7 @@ const CountriesList = () => {
   const pathname = usePathname();
 
   const slug =
-    pathname === "/" ? "Football" : usePathname().replace(/[^A-Za-z]+/g, "");
+    pathname === "/" ? "Football" : pathname.replace(/[^A-Za-z]+/g, "");
 
   const [countriesByCompetition, setCountriesByCompetition] = useState([]);
 
@@ -23,9 +23,9 @@ const CountriesList = () => {
     fetchCountriesData(slug);
   }, [pathname]);
 
-  // if (countriesByCompetition.length === 0) {
-  //   return <Spinner />;
-  // }
+  if (countriesByCompetition.length === 0) {
+    return <Spinner />;
+  }
 
   return (
     <ul className="mt-8 flex h-[400px] w-48 flex-col gap-1 overflow-hidden overflow-y-scroll">
