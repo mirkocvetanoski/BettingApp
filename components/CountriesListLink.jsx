@@ -17,7 +17,10 @@ const CountriesListLink = ({ country }) => {
 
   return (
     <>
-      <button onClick={handleOnClick} className="group relative px-2.5 py-1.5">
+      <button
+        onClick={handleOnClick}
+        className="group relative w-full px-2.5 py-1.5 text-start"
+      >
         <span
           className={`absolute bottom-0 left-0 h-0.5 w-0 bg-red-500 duration-300 group-hover:w-full group-hover:transition-all ${pathname.includes(country.replace(/[^A-Za-z]+/g, "")) ? "w-full" : ""}`}
         ></span>
