@@ -28,7 +28,7 @@ const CountriesList = () => {
   }
 
   return (
-    <ul className="scrollbar-thin scrollbar-track-rounded-full scrollbar-thumb-slate-700 scrollbar-track-slate-300 text-surface mt-8 flex h-[550px] w-48 flex-col overflow-hidden overflow-y-scroll dark:text-neutral-300">
+    <ul className="scrollbar-track-rounded-full text-surface mt-8 flex h-[550px] w-48 flex-col items-start overflow-hidden overflow-y-scroll scrollbar-thin scrollbar-track-slate-300 scrollbar-thumb-slate-700 dark:text-neutral-300">
       {countriesByCompetition.map((country, index) => (
         <CountriesListLink
           key={index}

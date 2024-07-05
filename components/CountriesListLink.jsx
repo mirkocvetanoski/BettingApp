@@ -3,6 +3,7 @@
 import { fetchLeagues } from "@/utils/requests";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import LeaguesList from "@/components/LeaguesList";
 
 const CountriesListLink = ({ country }) => {
   const pathname = usePathname().replace(/[^A-Za-z]+/g, "");
@@ -22,11 +23,7 @@ const CountriesListLink = ({ country }) => {
         ></span>
         {country}
       </button>
-      <ul>
-        {leagues.map((league, index) => (
-          <li key={index}>{league.LN}</li>
-        ))}
-      </ul>
+      <LeaguesList leagues={leagues} />
     </>
   );
 };
