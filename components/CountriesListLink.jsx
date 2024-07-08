@@ -9,10 +9,12 @@ const CountriesListLink = ({ country }) => {
   const pathname = usePathname().replace(/[^A-Za-z]+/g, "");
 
   const [leagues, setLeagues] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleOnClick = async () => {
     const { leagues: fetchedLeagues } = await fetchLeagues(country);
     setLeagues(fetchedLeagues);
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -26,7 +28,7 @@ const CountriesListLink = ({ country }) => {
         ></span>
         {country}
       </button>
-      <LeaguesList leagues={leagues} />
+      {isOpen && <LeaguesList leagues={leagues} />}
     </>
   );
 };
