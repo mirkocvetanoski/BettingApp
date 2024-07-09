@@ -7,6 +7,7 @@ import "primereact/resources/themes/mira/theme.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import MatchesFilterButton from "./MatchesFilterButton";
+import Spinner from "./Spinner";
 
 const MatchesList = () => {
   const today = new Date();
@@ -32,6 +33,10 @@ const MatchesList = () => {
 
     fetchMatchesData();
   }, [date, slug]);
+
+  if (matches.length === 0) {
+    return <Spinner />;
+  }
 
   console.log(matches);
 
