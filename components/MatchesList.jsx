@@ -20,7 +20,8 @@ const MatchesList = () => {
   const formatedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
 
   const params = useParams();
-  const slug = params.id;
+  const slug = !params.id ? "Football" : params.id;
+  console.log(slug);
   const [matches, setMatches] = useState([]);
 
   useEffect(() => {
