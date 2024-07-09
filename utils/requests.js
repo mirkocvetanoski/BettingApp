@@ -63,4 +63,25 @@ async function fetchLeagues(slug) {
   }
 }
 
-export { fetchCompetitions, fetchCountries, fetchLeagues };
+// Fetch matches by competition and date
+async function fetchMatches(slug, date) {
+  try {
+    // Handle the case where the domain is not available yet
+    if (!apiDomain) {
+      return [];
+    }
+
+    const res = await fetch(`${apiDomain}/matches/${slug}/${date}`);
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
+export { fetchCompetitions, fetchCountries, fetchLeagues, fetchMatches };

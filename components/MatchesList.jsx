@@ -1,18 +1,38 @@
 "use client";
 
+import { fetchMatches } from "@/utils/requests";
+import { useParams } from "next/navigation";
 import { Calendar } from "primereact/calendar";
 import "primereact/resources/themes/mira/theme.css";
+import { useEffect } from "react";
 import { useState } from "react";
 import MatchesFilterButton from "./MatchesFilterButton";
 
 const MatchesList = () => {
-  const [date, setDate] = useState(null);
-
-  const TODAY = new Date();
+  const today = new Date();
   const minDate = new Date();
   const maxDate = new Date();
-  minDate.setDate(TODAY.getDate() - 5);
-  maxDate.setDate(TODAY.getDate() + 5);
+  minDate.setDate(today.getDate() - 5);
+  maxDate.setDate(today.getDate() + 5);
+
+  const [date, setDate] = useState(today);
+
+  const formatedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+
+  const params = useParams();
+  const slug = params.id;
+  const [matches, setMatches] = useState([]);
+
+  useEffect(() => {
+    const fetchMatchesData = async () => {
+      const data = await fetchMatches(slug, formatedDate);
+      setMatches(data);
+    };
+
+    fetchMatchesData();
+  }, [date, slug]);
+
+  console.log(matches);
 
   return (
     <div className="relative mt-8 flex h-[550px] w-3/4 flex-col items-start justify-start rounded-lg border border-solid border-neutral-800 px-5 py-4">

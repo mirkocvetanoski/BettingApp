@@ -3,11 +3,14 @@ export const dynamic = "force-dynamic";
 // GET /api/matches/[Competition]/[date]
 export const GET = async (request, { params }) => {
   try {
-    let slug = params.slug;
+    let slug = params.slug[0];
+    let date = params.slug[1];
+
+    console.log(params);
 
     // Fetch matches by competition and date
     const res = await fetch(
-      `https://sportspredict.xyz/api/matches/${slug[0].charAt(0).toUpperCase() + slug[0].slice(1)}/${slug[1].charAt(0).toUpperCase() + slug[1].slice(1)}`,
+      `https://sportspredict.xyz/api/matches/${slug.charAt(0).toUpperCase() + slug.slice(1)}/${date}`,
     );
 
     const data = await res.json();
