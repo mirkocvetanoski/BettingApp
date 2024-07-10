@@ -13,7 +13,9 @@ const MatchesListLink = ({ match }) => {
       className="flex w-full items-center gap-12 border-b-[1px] border-solid px-6 py-2 text-sm"
     >
       <span className="font-thin">
-        {match.Status === "Finished" ? "Finished" : match.PlayTime.slice(-7)}
+        {match.Status === "Finished"
+          ? "Finished"
+          : match.PlayTime.slice(-8, -3)}
       </span>
       <div>
         <span>{match.HomeTeam}</span>
