@@ -16,9 +16,9 @@ export default function RootLayout({ children }) {
   return (
     <AuthProvider>
       <html lang="en">
-        <body className="grid h-screen w-screen grid-cols-1 grid-rows-[auto_minmax(600px,_1fr)_100px_0px] items-center justify-items-center bg-neutral-950 pt-6">
+        <body className="grid h-screen w-screen grid-cols-1 grid-rows-[0.2fr_1fr_0.2fr_0px] items-center justify-items-center bg-neutral-950 pt-6">
           <Navbar />
-          <main className="flex w-2/3 flex-col justify-center self-start p-6">
+          <main className="flex h-fit w-2/3 flex-col justify-center self-start p-6">
             {children}
           </main>
           <Footer />

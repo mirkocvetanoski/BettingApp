@@ -6,8 +6,6 @@ export const GET = async (request, { params }) => {
     let slug = params.slug[0];
     let date = params.slug[1];
 
-    console.log(params);
-
     // Fetch matches by competition and date
     const res = await fetch(
       `https://sportspredict.xyz/api/matches/${slug.charAt(0).toUpperCase() + slug.slice(1)}/${date}`,

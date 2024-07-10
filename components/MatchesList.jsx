@@ -7,6 +7,7 @@ import "primereact/resources/themes/mira/theme.css";
 import { useEffect } from "react";
 import { useState } from "react";
 import MatchesFilterButton from "./MatchesFilterButton";
+import MatchesListLink from "./MatchesListLink";
 import Spinner from "./Spinner";
 
 const MatchesList = () => {
@@ -22,7 +23,7 @@ const MatchesList = () => {
 
   const params = useParams();
   const slug = !params.id ? "Football" : params.id;
-  console.log(slug);
+
   const [matches, setMatches] = useState([]);
 
   useEffect(() => {
@@ -38,10 +39,10 @@ const MatchesList = () => {
     return <Spinner />;
   }
 
-  console.log(matches);
+  console.log(matches.matches);
 
   return (
-    <div className="relative mt-8 flex h-[550px] w-3/4 flex-col items-start justify-start rounded-lg border border-solid border-neutral-800 px-5 py-4">
+    <div className="relative mt-8 flex h-fit w-3/4 flex-col items-start justify-start rounded-lg border border-solid border-neutral-800 px-5 py-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <MatchesFilterButton>LIVE</MatchesFilterButton>
@@ -60,7 +61,11 @@ const MatchesList = () => {
         className="absolute right-4 top-4 px-1 py-1"
       />
 
-      <div>Matches</div>
+      <ul className="flex w-full flex-col gap-3 px-6 py-2">
+        {matches.matches.map((match, index) => (
+          <MatchesListLink key={index} match={match} />
+        ))}
+      </ul>
     </div>
   );
 };
