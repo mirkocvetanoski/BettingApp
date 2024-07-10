@@ -22,7 +22,7 @@ const MatchesListLink = ({ match }) => {
         <br />
         <span>{match.AwayTeam}</span>
       </div>
-      <div className="ml-auto">
+      <div className="ml-auto text-right">
         <span>
           {Number(match.HomeTeam_FirstHalfGoals) +
             Number(match.HomeTeam_SecondHalfGoals)}
