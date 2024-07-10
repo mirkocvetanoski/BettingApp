@@ -19,7 +19,7 @@ const MatchesList = () => {
 
   const [date, setDate] = useState(today);
 
-  const formatedDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+  const formatedDate = `${date.getFullYear()}-${date.getMonth().toString().length === 1 ? `0${(date.getMonth() + 1).toString()}` : `${(date.getMonth() + 1).toString()}`}-${date.getDate().toString().length === 1 ? `0${date.getDate().toString()}` : `${date.getDate().toString()}`}`;
 
   const params = useParams();
   const slug = !params.id ? "Football" : params.id;
@@ -38,8 +38,6 @@ const MatchesList = () => {
   if (matches.length === 0) {
     return <Spinner />;
   }
-
-  console.log(matches.matches);
 
   return (
     <div className="relative mt-8 flex h-fit w-3/4 flex-col items-start justify-start rounded-lg border border-solid border-neutral-800 px-5 py-4">
