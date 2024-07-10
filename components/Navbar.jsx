@@ -20,7 +20,7 @@ const Navbar = () => {
         <NavbarLink link="/news">
           <FaRegNewspaper /> News
         </NavbarLink>
-        <NavbarLink link="/search">
+        <NavbarLink link="#">
           <FiSearch /> Search
         </NavbarLink>
         {session ? (
