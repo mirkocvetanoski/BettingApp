@@ -1,9 +1,15 @@
+"use client";
+
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 const MatchesListLink = ({ match }) => {
+  const params = useParams();
+  const competition = !params.id ? "Football" : params.id;
+
   return (
     <Link
-      href="#"
+      href={`/${competition}/${match.ID}`}
       className="flex w-full items-center gap-12 border-b-[1px] border-solid px-6 py-2 text-sm"
     >
       <span className="font-thin">

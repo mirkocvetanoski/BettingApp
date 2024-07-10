@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <nav className="rounded-lg border border-solid border-neutral-800 px-5 py-4">
       <ul className="text-md flex items-center gap-4 font-medium text-neutral-300">
-        <NavbarLink link="/scores">
+        <NavbarLink link="/">
           <MdScoreboard />
           Scores
         </NavbarLink>
