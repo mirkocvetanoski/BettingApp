@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useGlobalContext } from "@/context/GlobalContext";
 
-const MatchesListLink = ({ match }) => {
+const MatchesListLink = ({ match, odds }) => {
   const params = useParams();
   const competition = !params.id ? "Football" : params.id;
 
@@ -31,13 +31,13 @@ const MatchesListLink = ({ match }) => {
       <div className="ml-auto text-right">
         <span>
           {match.Status === "Finished"
-            ? `${Number(match.HomeTeam_SecondHalfGoals)}`
+            ? `${!odds ? Number(match.HomeTeam_SecondHalfGoals) : Number(match.HomeWin_Odd).toFixed(2)}`
             : "-"}
         </span>
         <br />
         <span>
           {match.Status === "Finished"
-            ? `${Number(match.AwayTeam_SecondHalfGoals)}`
+            ? `${!odds ? Number(match.AwayTeam_SecondHalfGoals) : Number(match.AwayWin_Odd).toFixed(2)}`
             : "-"}
         </span>
       </div>

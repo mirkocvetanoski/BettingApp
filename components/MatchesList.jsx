@@ -25,6 +25,7 @@ const MatchesList = () => {
   const slug = !params.id ? "Football" : params.id;
 
   const [matches, setMatches] = useState([]);
+  const [odds, setOdds] = useState(false);
 
   useEffect(() => {
     const fetchMatchesData = async () => {
@@ -43,8 +44,9 @@ const MatchesList = () => {
     <div className="relative mt-8 flex h-fit w-3/4 flex-col items-start justify-start rounded-lg border border-solid border-neutral-800 px-5 py-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <MatchesFilterButton>LIVE</MatchesFilterButton>
-          <MatchesFilterButton>ODDS</MatchesFilterButton>
+          <MatchesFilterButton odds={odds} setOdds={setOdds}>
+            ODDS
+          </MatchesFilterButton>
           <MatchesFilterButton>FINISHED</MatchesFilterButton>
           <MatchesFilterButton>SCHEDULED</MatchesFilterButton>
         </div>
@@ -61,7 +63,7 @@ const MatchesList = () => {
 
       <ul className="flex w-full flex-col gap-3 px-6 py-2">
         {matches.matches.map((match, index) => (
-          <MatchesListLink key={index} match={match} />
+          <MatchesListLink key={index} match={match} odds={odds} />
         ))}
       </ul>
     </div>
