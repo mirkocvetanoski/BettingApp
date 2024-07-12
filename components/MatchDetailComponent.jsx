@@ -55,9 +55,11 @@ const MatchDetailComponent = () => {
           <span
             className={`mt-4 ${globalMatch.Status === "Finished" ? "text-green-600" : "text-orange-600"}`}
           >
-            {overTime === "Fulltime"
-              ? Number(globalMatch.HomeTeam_SecondHalfGoals)
-              : Number(globalMatch.HomeTeam_FirstHalfGoals)}
+            {globalMatch.Status === "Finished"
+              ? overTime === "Fulltime"
+                ? Number(globalMatch.HomeTeam_SecondHalfGoals)
+                : Number(globalMatch.HomeTeam_FirstHalfGoals)
+              : "-"}
           </span>
         </div>
         <div className="flex w-[400px] flex-col items-center">
@@ -77,9 +79,11 @@ const MatchDetailComponent = () => {
           <span
             className={`mt-4 ${globalMatch.Status === "Finished" ? "text-green-600" : "text-orange-600"}`}
           >
-            {overTime === "Fulltime"
-              ? Number(globalMatch.AwayTeam_SecondHalfGoals)
-              : Number(globalMatch.AwayTeam_FirstHalfGoals)}
+            {globalMatch.Status === "Finished"
+              ? overTime === "Fulltime"
+                ? Number(globalMatch.AwayTeam_SecondHalfGoals)
+                : Number(globalMatch.AwayTeam_FirstHalfGoals)
+              : "-"}
           </span>
         </div>
       </div>

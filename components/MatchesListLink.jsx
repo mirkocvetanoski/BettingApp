@@ -29,9 +29,17 @@ const MatchesListLink = ({ match }) => {
         <span>{match.AwayTeam}</span>
       </div>
       <div className="ml-auto text-right">
-        <span>{Number(match.HomeTeam_SecondHalfGoals)}</span>
+        <span>
+          {match.Status === "Finished"
+            ? `${Number(match.HomeTeam_SecondHalfGoals)}`
+            : "-"}
+        </span>
         <br />
-        <span>{Number(match.AwayTeam_SecondHalfGoals)}</span>
+        <span>
+          {match.Status === "Finished"
+            ? `${Number(match.AwayTeam_SecondHalfGoals)}`
+            : "-"}
+        </span>
       </div>
     </Link>
   );
