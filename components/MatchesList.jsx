@@ -26,15 +26,41 @@ const MatchesList = () => {
 
   const [matches, setMatches] = useState([]);
   const [odds, setOdds] = useState(false);
+  const [isActiveAll, setIsActiveAll] = useState(true);
+  const [isActiveFinished, setIsActiveFinished] = useState(false);
+  const [isActiveFuture, setIsActiveFuture] = useState(false);
 
   useEffect(() => {
     const fetchMatchesData = async () => {
       const data = await fetchMatches(slug, formatedDate);
-      setMatches(data);
+      setMatches(data.matches);
     };
 
     fetchMatchesData();
   }, [date, slug]);
+
+  const handleAllMatches = () => {
+    const fetchMatchesData = async () => {
+      const data = await fetchMatches(slug, formatedDate);
+      setMatches(data.matches);
+    };
+
+    fetchMatchesData();
+  };
+
+  const handleFilterFinishedMatches = () => {
+    const finishedMatches = matches.filter(
+      (match) => match.Status === "Finished",
+    );
+    setMatches(finishedMatches);
+  };
+
+  const handleFilterFutureMatches = () => {
+    const futureMatches = matches.filter(
+      (match) => match.Status !== "Finished",
+    );
+    setMatches(futureMatches);
+  };
 
   if (matches.length === 0) {
     return <Spinner />;
@@ -47,8 +73,37 @@ const MatchesList = () => {
           <MatchesFilterButton odds={odds} setOdds={setOdds}>
             ODDS
           </MatchesFilterButton>
-          <MatchesFilterButton>FINISHED</MatchesFilterButton>
-          <MatchesFilterButton>SCHEDULED</MatchesFilterButton>
+          <MatchesFilterButton
+            isActiveAll={isActiveAll}
+            setIsActiveAll={setIsActiveAll}
+            setIsActiveFinished={setIsActiveFinished}
+            setIsActiveFuture={setIsActiveFuture}
+            onAllMatches={handleAllMatches}
+          >
+            ALL
+          </MatchesFilterButton>
+
+          {!isActiveFuture && (
+            <MatchesFilterButton
+              setIsActiveAll={setIsActiveAll}
+              isActiveFinished={isActiveFinished}
+              setIsActiveFinished={setIsActiveFinished}
+              onFinishedMatches={handleFilterFinishedMatches}
+            >
+              FINISHED
+            </MatchesFilterButton>
+          )}
+
+          {!isActiveFinished && (
+            <MatchesFilterButton
+              setIsActiveAll={setIsActiveAll}
+              isActiveFuture={isActiveFuture}
+              setIsActiveFuture={setIsActiveFuture}
+              onFutureMatches={handleFilterFutureMatches}
+            >
+              SCHEDULED
+            </MatchesFilterButton>
+          )}
         </div>
       </div>
       <Calendar
@@ -62,7 +117,7 @@ const MatchesList = () => {
       />
 
       <ul className="flex w-full flex-col gap-3 px-6 py-2">
-        {matches.matches.map((match, index) => (
+        {matches.map((match, index) => (
           <MatchesListLink key={index} match={match} odds={odds} />
         ))}
       </ul>

@@ -32,13 +32,13 @@ const MatchesListLink = ({ match, odds }) => {
         <span>
           {match.Status === "Finished"
             ? `${!odds ? Number(match.HomeTeam_SecondHalfGoals) : Number(match.HomeWin_Odd).toFixed(2)}`
-            : "-"}
+            : `${!odds ? "-" : Number(match.HomeWin_Odd).toFixed(2)}`}
         </span>
         <br />
         <span>
           {match.Status === "Finished"
             ? `${!odds ? Number(match.AwayTeam_SecondHalfGoals) : Number(match.AwayWin_Odd).toFixed(2)}`
-            : "-"}
+            : `${!odds ? "-" : Number(match.AwayWin_Odd).toFixed(2)}`}
         </span>
       </div>
     </Link>
