@@ -6,6 +6,7 @@ import { useState } from "react";
 const MatchDetailComponent = () => {
   const { globalMatch, setGlobalMatch } = useGlobalContext();
   const [overTime, setOverTime] = useState("Fulltime");
+  console.log(globalMatch);
 
   return (
     <div className="flex w-2/4 flex-col items-center justify-start gap-1 text-neutral-300">
@@ -50,7 +51,7 @@ const MatchDetailComponent = () => {
         <div className="flex w-[400px] flex-col items-center">
           <span className="w-max">{globalMatch.HomeTeam}</span>
           <span className="text-xs font-extralight text-yellow-600">
-            ({globalMatch.HomeWin_Odd})
+            ({Number(globalMatch.HomeWin_Odd).toFixed(2)})
           </span>
           <span
             className={`mt-4 ${globalMatch.Status === "Finished" ? "text-green-600" : "text-orange-600"}`}
@@ -66,7 +67,7 @@ const MatchDetailComponent = () => {
           <p className="flex w-max flex-col items-center text-center">
             Draw:
             <span className="text-xs font-extralight text-yellow-600">
-              ({globalMatch.Draw_Odd})
+              ({Number(globalMatch.Draw_Odd).toFixed(2)})
             </span>
           </p>
         </div>
@@ -74,7 +75,7 @@ const MatchDetailComponent = () => {
         <div className="flex w-[400px] flex-col items-center">
           <span className="w-max">{globalMatch.AwayTeam}</span>
           <span className="text-xs font-extralight text-yellow-600">
-            ({globalMatch.AwayWin_Odd})
+            ({Number(globalMatch.AwayWin_Odd).toFixed(2)})
           </span>
           <span
             className={`mt-4 ${globalMatch.Status === "Finished" ? "text-green-600" : "text-orange-600"}`}
