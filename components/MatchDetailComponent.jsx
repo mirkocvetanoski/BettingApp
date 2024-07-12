@@ -17,7 +17,7 @@ const MatchDetailComponent = () => {
         <p>Playtime:</p>
         {globalMatch.Status === "Finished"
           ? "Finished"
-          : globalMatch.PlayTime.slice(-8, -3)}
+          : globalMatch?.PlayTime?.slice(-8, -3)}
       </span>
 
       <span className="text-md font-thin underline underline-offset-4">

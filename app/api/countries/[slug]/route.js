@@ -5,8 +5,6 @@ export const GET = async (request, { params }) => {
   try {
     let slug = params.slug;
 
-    console.log(slug.charAt(0).toUpperCase() + slug.slice(1));
-
     // Fetch countries by competition
     const res = await fetch(
       `https://sportspredict.xyz/api/countries/${slug.charAt(0).toUpperCase() + slug.slice(1)}`,

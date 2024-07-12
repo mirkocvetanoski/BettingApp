@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useGlobalContext } from "@/context/GlobalContext";
-import { useEffect } from "react";
 
 const MatchesListLink = ({ match }) => {
   const params = useParams();
