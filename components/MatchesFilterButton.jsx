@@ -5,12 +5,7 @@ const MatchesFilterButton = ({
   onAllMatches,
   onFinishedMatches,
   onFutureMatches,
-  isActiveFinished,
-  setIsActiveFinished,
-  isActiveFuture,
-  setIsActiveFuture,
-  isActiveAll,
-  setIsActiveAll,
+  matchesShown,
 }) => {
   return (
     <button
@@ -20,22 +15,15 @@ const MatchesFilterButton = ({
         }
         if (children === "ALL") {
           onAllMatches();
-          setIsActiveAll(!isActiveAll);
-          setIsActiveFinished(false);
-          setIsActiveFuture(false);
         }
         if (children === "FINISHED") {
           onFinishedMatches();
-          setIsActiveAll(false);
-          setIsActiveFinished(!isActiveFinished);
         }
         if (children === "SCHEDULED") {
           onFutureMatches();
-          setIsActiveAll(false);
-          setIsActiveFuture(!isActiveFuture);
         }
       }}
-      className={`text-md rounded-sm px-1 py-1 hover:bg-neutral-700 hover:text-red-500 ${(odds || isActiveAll || isActiveFinished || isActiveFuture) && "bg-neutral-700 text-red-500"}`}
+      className={`text-md rounded-sm px-1 py-1 hover:bg-neutral-700 hover:text-red-500 ${(odds || matchesShown === children) && "bg-neutral-700 text-red-500"}`}
     >
       {children}
     </button>

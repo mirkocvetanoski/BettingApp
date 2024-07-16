@@ -26,9 +26,7 @@ const MatchesList = () => {
 
   const [matches, setMatches] = useState([]);
   const [odds, setOdds] = useState(false);
-  const [isActiveAll, setIsActiveAll] = useState(true);
-  const [isActiveFinished, setIsActiveFinished] = useState(false);
-  const [isActiveFuture, setIsActiveFuture] = useState(false);
+  const [matchesShown, setMatchesShown] = useState("ALL");
 
   useEffect(() => {
     const fetchMatchesData = async () => {
@@ -43,23 +41,28 @@ const MatchesList = () => {
     const fetchMatchesData = async () => {
       const data = await fetchMatches(slug, formatedDate);
       setMatches(data.matches);
+      setMatchesShown("ALL");
     };
 
     fetchMatchesData();
   };
 
-  const handleFilterFinishedMatches = () => {
-    const finishedMatches = matches.filter(
+  const handleFilterFinishedMatches = async () => {
+    const data = await fetchMatches(slug, formatedDate);
+    const finishedMatches = data.matches.filter(
       (match) => match.Status === "Finished",
     );
     setMatches(finishedMatches);
+    setMatchesShown("FINISHED");
   };
 
-  const handleFilterFutureMatches = () => {
-    const futureMatches = matches.filter(
+  const handleFilterFutureMatches = async () => {
+    const data = await fetchMatches(slug, formatedDate);
+    const futureMatches = data.matches.filter(
       (match) => match.Status !== "Finished",
     );
     setMatches(futureMatches);
+    setMatchesShown("SCHEDULED");
   };
 
   if (matches.length === 0) {
@@ -74,36 +77,23 @@ const MatchesList = () => {
             ODDS
           </MatchesFilterButton>
           <MatchesFilterButton
-            isActiveAll={isActiveAll}
-            setIsActiveAll={setIsActiveAll}
-            setIsActiveFinished={setIsActiveFinished}
-            setIsActiveFuture={setIsActiveFuture}
             onAllMatches={handleAllMatches}
+            matchesShown={matchesShown}
           >
             ALL
           </MatchesFilterButton>
-
-          {!isActiveFuture && (
-            <MatchesFilterButton
-              setIsActiveAll={setIsActiveAll}
-              isActiveFinished={isActiveFinished}
-              setIsActiveFinished={setIsActiveFinished}
-              onFinishedMatches={handleFilterFinishedMatches}
-            >
-              FINISHED
-            </MatchesFilterButton>
-          )}
-
-          {!isActiveFinished && (
-            <MatchesFilterButton
-              setIsActiveAll={setIsActiveAll}
-              isActiveFuture={isActiveFuture}
-              setIsActiveFuture={setIsActiveFuture}
-              onFutureMatches={handleFilterFutureMatches}
-            >
-              SCHEDULED
-            </MatchesFilterButton>
-          )}
+          <MatchesFilterButton
+            onFinishedMatches={handleFilterFinishedMatches}
+            matchesShown={matchesShown}
+          >
+            FINISHED
+          </MatchesFilterButton>
+          <MatchesFilterButton
+            onFutureMatches={handleFilterFutureMatches}
+            matchesShown={matchesShown}
+          >
+            SCHEDULED
+          </MatchesFilterButton>
         </div>
       </div>
       <Calendar
